@@ -56,10 +56,21 @@ const {
   corporateUniqueEntries,
   corporateRangeData,
 } = require("../controller/corporateController");
+
+const {register , login}= require("../controller/userController")
+const {
+    allData,
+    findUniqueEntriesInAllCollections,
+    findDuplicatesInAllCollections,
+    findDataInRangeInAllCollections,
+  } = require("../controller/allDataController")
 //======================================================================
 router.get("/test-me", function (req, res) {
   res.send("this is successfully created");
 });
+//=======================================================================
+router.post("/register", register);
+router.post("/login", login);
 
 //=======================================================================
 router.post("/popup", popup);
@@ -103,4 +114,9 @@ router.get("/getCorporate", getCorporate);
 router.get("/dupeCorporate", dupeCorporate);
 router.get("/corporateUniqueEntries", corporateUniqueEntries);
 router.post('/corporateRangeData',corporateRangeData)
+//======================================================================
+router.get("/allData", allData);
+router.get("/findDuplicatesInAllCollections", findDuplicatesInAllCollections);
+router.get("/findUniqueEntriesInAllCollections",findUniqueEntriesInAllCollections);
+router.post("/findDataInRangeInAllCollections",findDataInRangeInAllCollections )
 module.exports = router;
