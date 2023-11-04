@@ -226,7 +226,7 @@ const findUniqueEntriesInAllCollections = async (req, res) => {
       },
       {
         model: serviceModel,
-        phoneField: "Phone",
+        phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
       },
