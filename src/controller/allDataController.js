@@ -48,7 +48,7 @@ const findDuplicates = async (
             number: `$${phoneField}`,
             date: `$${dateField}`,
             leadFrom: `$${leadFromField}`,
-            vehicle: includeVehicle ? `$LEADCF6` : null,
+            vehicle: includeVehicle ? `$model` : null,
           },
           count: { $sum: 1 },
         },
@@ -99,13 +99,13 @@ const findDuplicatesInAllCollections = async (req, res) => {
       },
       {
         model: insuranceModel,
-        phoneField: "Phone",
+        phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
       },
       {
         model: onRoadPriceModel,
-        phoneField: "Mobile",
+        phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
         includeVehicle: true,
@@ -118,7 +118,7 @@ const findDuplicatesInAllCollections = async (req, res) => {
       },
       {
         model: serviceModel,
-        phoneField: "Phone",
+        phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
       },
