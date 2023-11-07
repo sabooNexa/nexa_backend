@@ -64,6 +64,14 @@ const {
     findDuplicatesInAllCollections,
     findDataInRangeInAllCollections,
   } = require("../controller/allDataController")
+
+  const  {
+    contactform,
+    getcontactform,
+  contactUsRange,
+  contactUsUniqueEntries,
+    dupesContactUs,
+  } = require("../controller/contactUsController")
 //======================================================================
 router.get("/test-me", function (req, res) {
   res.send("this is successfully created");
@@ -119,4 +127,10 @@ router.get("/allData", allData);
 router.get("/findDuplicatesInAllCollections", findDuplicatesInAllCollections);
 router.get("/findUniqueEntriesInAllCollections",findUniqueEntriesInAllCollections);
 router.post("/findDataInRangeInAllCollections",findDataInRangeInAllCollections )
+//===========================================================================
+router.post("/contactform",contactform);
+router.get("/getcontactform",getcontactform)
+router.get("/contactUsUniqueEntries",contactUsUniqueEntries)
+router.get("/dupesContactUs",dupesContactUs)
+router.post("/contactUsRange",contactUsRange)
 module.exports = router;
