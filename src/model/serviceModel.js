@@ -21,7 +21,7 @@ const serviceSchema = new mongoose.Schema({
       },
       leadFrom : {
         type: String,
-        default:"service"
+        default:"Service"
        },
       date: {
         type: String,

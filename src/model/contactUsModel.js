@@ -30,7 +30,10 @@ const contactSchema = new mongoose.Schema(
         type: String,
         trim: true,
       },
-     
+      leadFrom: {
+        type: String,
+        default: "Contact Us",
+      },
       isDeleted: {
         type: Boolean,
         default: false,

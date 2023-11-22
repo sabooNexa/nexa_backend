@@ -5,7 +5,7 @@ const insuranceModel = require("../model/insuranceModel");
 const onRoadPriceModel = require("../model/onRoadPriceModel");
 const popupModel = require("../model/popupModel");
 const serviceModel = require("../model/serviceModel");
-
+const contactusModel =require("../model/contactUsModel")
 const allData = async (req, res) => {
   try {
     // Use Promise.all to query data from multiple collections concurrently
@@ -17,6 +17,7 @@ const allData = async (req, res) => {
       onRoadPriceModel.find().sort({ createdAt: -1 }).exec(),
       popupModel.find().sort({ createdAt: -1 }).exec(),
       serviceModel.find().sort({ createdAt: -1 }).exec(),
+      contactusModel.find().sort({ createdAt: -1 }).exec(),
     ]);
 
     // Combine the results into a single array

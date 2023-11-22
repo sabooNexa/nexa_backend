@@ -10,9 +10,7 @@ const app = express();
 
 //app.use( multer().any())
 app.use(express.json());
-
-
-app.use(cors()); // Use the corsOptions for CORS configuration
+app.use(cors());
 
 
 

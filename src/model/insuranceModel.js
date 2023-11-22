@@ -17,7 +17,7 @@ const insuranceSchema = new mongoose.Schema({
     },
     leadFrom: {
         type: String,
-        default: "isurance",
+        default: "Isurance",
       },
       date: {
         type: String,

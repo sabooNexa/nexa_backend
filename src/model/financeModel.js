@@ -18,7 +18,7 @@ const financeSchema = new mongoose.Schema({
     },
     leadFrom: {
         type: String,
-        default: "finance",
+        default: "Finance",
       },
       date: {
         type: String,
