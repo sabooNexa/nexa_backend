@@ -16,6 +16,10 @@ const corporateSchema = new mongoose.Schema({
         require:true,
         trim :true
     },
+    comment:{
+      type:String,
+      trim :true
+    },
     leadFrom: {
         type: String,
         default: "Corporate",
