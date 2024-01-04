@@ -77,6 +77,7 @@ const {
   const {authentication} = require("../middleware/auth")
 
   const {offers, getOffers} = require('../controller/offerController')
+  const {general, getGenerals} = require('../controller/generalController')
 //======================================================================
 router.get("/test-me", function (req, res) {
   res.send("this is successfully created");
@@ -141,4 +142,7 @@ router.post("/contactUsRange",contactUsRange)
 //=============================================================================
 router.post('/offers',offers)
 router.get("/getOffers",getOffers)
+//============================================================================
+router.post("/general",general)
+router.get("/getGenerals",getGenerals)
 module.exports = router;

@@ -34,6 +34,8 @@ const insuranceSchema = new mongoose.Schema({
       },
 },{timestamps:true})
 module.exports= mongoose.model("insurance",insuranceSchema)
+
+
 email:"testing@gmail.com"
 name:"testing-2"
 phone:"9014340527"
