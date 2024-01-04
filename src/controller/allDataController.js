@@ -6,6 +6,8 @@ const onRoadPriceModel = require("../model/onRoadPriceModel");
 const popupModel = require("../model/popupModel");
 const serviceModel = require("../model/serviceModel");
 const contactusModel =require("../model/contactUsModel")
+const offerModel = require("../model/offerModel")
+
 const allData = async (req, res) => {
   try {
     // Use Promise.all to query data from multiple collections concurrently
@@ -18,6 +20,7 @@ const allData = async (req, res) => {
       popupModel.find().sort({ createdAt: -1 }).exec(),
       serviceModel.find().sort({ createdAt: -1 }).exec(),
       contactusModel.find().sort({ createdAt: -1 }).exec(),
+      offerModel.find().sort({ createdAt: -1 }).exec(),
     ]);
 
     // Combine the results into a single array
@@ -119,6 +122,18 @@ const findDuplicatesInAllCollections = async (req, res) => {
       },
       {
         model: serviceModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: contactusModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: offerModel,
         phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
@@ -227,6 +242,18 @@ const findUniqueEntriesInAllCollections = async (req, res) => {
       },
       {
         model: serviceModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: contactusModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: offerModel,
         phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
@@ -348,6 +375,18 @@ const findDataInRangeInAllCollections = async (req, res) => {
       },
       {
         model: serviceModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: contactusModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: offerModel,
         phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",

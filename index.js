@@ -2,9 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const route = require("./src/router/router");
 const dotenv = require('dotenv'); // Import dotenv
-var cors = require("cors");
-dotenv.config(); // Load environment variables from .env file
 
+dotenv.config(); // Load environment variables from .env file
+var cors = require("cors");
 const app = express();
 //const multer= require("multer");
 

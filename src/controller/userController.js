@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken")
 const userModel = require("../model/userModel")
-
+const dotenv = require('dotenv'); // Import dotenv
+dotenv.config(); 
 
 const register = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -43,7 +44,7 @@ const login = async (req, res) => {
       // > Create Jwt Token
       const token = jwt.sign(
         { userID: isEmailExists._id?.toString() },
-        'saboo-nexa Secret Key',
+        process.env.Secret,
         { expiresIn: '24h' }
       );
   

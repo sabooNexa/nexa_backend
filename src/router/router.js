@@ -72,6 +72,11 @@ const {
   contactUsUniqueEntries,
     dupesContactUs,
   } = require("../controller/contactUsController")
+
+
+  const {authentication} = require("../middleware/auth")
+
+  const {offers, getOffers} = require('../controller/offerController')
 //======================================================================
 router.get("/test-me", function (req, res) {
   res.send("this is successfully created");
@@ -133,4 +138,7 @@ router.get("/getcontactform",getcontactform)
 router.get("/contactUsUniqueEntries",contactUsUniqueEntries)
 router.get("/dupesContactUs",dupesContactUs)
 router.post("/contactUsRange",contactUsRange)
+//=============================================================================
+router.post('/offers',offers)
+router.get("/getOffers",getOffers)
 module.exports = router;
