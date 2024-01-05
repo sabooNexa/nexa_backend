@@ -25,7 +25,7 @@ const generalSchema = new mongoose.Schema(
       },
       leadFrom : {
         type: String,
-     
+     require :true
        },
       date: {
         type: String,

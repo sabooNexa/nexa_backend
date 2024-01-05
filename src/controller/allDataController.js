@@ -8,6 +8,7 @@ const serviceModel = require("../model/serviceModel");
 const contactusModel =require("../model/contactUsModel")
 const offerModel = require("../model/offerModel")
 const generalModel = require("../model/generalModel")
+const drivingSchoolModel = require("../model/drivingSchoolModel")
 const allData = async (req, res) => {
   try {
     // Use Promise.all to query data from multiple collections concurrently
@@ -22,6 +23,7 @@ const allData = async (req, res) => {
       contactusModel.find().sort({ createdAt: -1 }).exec(),
       offerModel.find().sort({ createdAt: -1 }).exec(),
       generalModel.find().sort({ createdAt: -1 }).exec(),
+      drivingSchoolModel.find().sort({ createdAt: -1 }).exec()
     ]);
 
     // Combine the results into a single array
@@ -141,6 +143,12 @@ const findDuplicatesInAllCollections = async (req, res) => {
       },
       {
         model: generalModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: drivingSchoolModel,
         phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
@@ -267,6 +275,12 @@ const findUniqueEntriesInAllCollections = async (req, res) => {
       },
       {
         model: generalModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: drivingSchoolModel,
         phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
@@ -406,6 +420,12 @@ const findDataInRangeInAllCollections = async (req, res) => {
       },
       {
         model: generalModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: drivingSchoolModel,
         phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",

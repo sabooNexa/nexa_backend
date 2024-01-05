@@ -76,8 +76,15 @@ const {
 
   const {authentication} = require("../middleware/auth")
 
-  const {offers, getOffers} = require('../controller/offerController')
+  const {offers, getOffers, offersUniqueEntries, duplicateOffers, offersRange} = require('../controller/offerController')
   const {general, getGenerals} = require('../controller/generalController')
+  let {
+    drvingSchool,
+    getDrivingSchool,
+    dupesDrivingSchool,
+    drivingSchoolUniqueEntries,
+    drivingSchoolRange,
+  } = require("../controller/drivingSchoolController");
 //======================================================================
 router.get("/test-me", function (req, res) {
   res.send("this is successfully created");
@@ -142,7 +149,11 @@ router.post("/contactUsRange",contactUsRange)
 //=============================================================================
 router.post('/offers',offers)
 router.get("/getOffers",getOffers)
+router.get("/duplicateOffers",duplicateOffers)
 //============================================================================
 router.post("/general",general)
 router.get("/getGenerals",getGenerals)
+//============================================================================
+router.post("/drvingSchool",drvingSchool)
+router.get("/getDrivingSchool",getDrivingSchool)
 module.exports = router;

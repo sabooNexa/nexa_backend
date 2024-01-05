@@ -60,5 +60,104 @@ const getOffers = async (req, res) => {
       return res.status(500).send({ status: false, message: error.message });
     }
   };
+  //======================================================================
 
-module.exports ={offers, getOffers}
+const duplicateOffers = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    try {
+      const repeatedPhoneNumbers = await offerModel.aggregate([
+        {
+          $group: {
+            _id: {
+              date: "$date",
+              mobile: "$phone",
+              vehicle: "$model",
+            },
+            count: { $sum: 1 },
+          },
+        },
+        {
+          $project: {
+            _id: 0, // Exclude _id from the result
+  
+            number: "$_id.mobile",
+            date: "$_id.date",
+            vehicle: "$_id.vehicle",
+            count: 1,
+          },
+        },
+        { $match: { count: { $gt: 1 } } },
+      ]);
+  
+      return res.status(200).send({ status: true, data: repeatedPhoneNumbers });
+    } catch (error) {
+      return res.status(500).send({ status: false, message: error.message });
+    }
+  };
+  
+  //=================================================================
+  const offersUniqueEntries = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    try {
+      let data = await offerModel.aggregate([
+        { $match: { isDeleted: false } },
+        {
+          $group: {
+            _id: {
+              date: "$date",
+              mobile: "$phone",
+              vehicle: "$model",
+            },
+            doc: { $first: "$$ROOT" },
+          },
+        },
+        { $replaceRoot: { newRoot: "$doc" } },
+        { $sort: { createdAt: -1 } },
+      ]);
+      return res.status(200).send({ status: true, data: data });
+    } catch (error) {
+      return res.status(500).send({ status: false, message: error.message });
+    }
+  };
+  //===========================================================================
+  
+  const offersRange = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    try {
+      const { startDate, endDate } = req.body; // Assuming startDate and endDate are provided in the request body
+  
+      let data = await offerModel .aggregate([
+        {
+          $match: {
+            isDeleted: false,
+            $expr: {
+              $and: [
+                { $gte: ["$date", startDate] },
+                { $lte: ["$date", endDate] },
+              ],
+            },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              date: "$date",
+              mobile: "$Mobile",
+              vehicle: "$LEADCF6",
+            },
+            doc: { $first: "$$ROOT" },
+          },
+        },
+        { $replaceRoot: { newRoot: "$doc" } },
+        { $sort: { createdAt: -1 } }, // Note: createdAt field doesn't seem to be in the pipeline
+      ]);
+  
+      return res.status(200).send({ status: true, data: data });
+    } catch (error) {
+      return res.status(500).send({ status: false, message: error.message });
+    }
+  };
+  //====================================================================================
+  
+
+module.exports ={offers, getOffers,duplicateOffers, offersUniqueEntries, duplicateOffers, offersRange}
