@@ -46,7 +46,7 @@ module.exports = mongoose.model("drivingSchool",drivingSchoolSchema)
 
 
 
-email: "testing@gmail.com"
-name: "testing-2"
-outlet: "MARUTI SUZUKI DRIVING SCHOOL"
-phone: "9014340527"
+// email: "testing@gmail.com"
+// name: "testing-2"
+// outlet: "MARUTI SUZUKI DRIVING SCHOOL"
+// phone: "9014340527"

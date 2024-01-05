@@ -150,6 +150,7 @@ router.post("/contactUsRange",contactUsRange)
 router.post('/offers',offers)
 router.get("/getOffers",getOffers)
 router.get("/duplicateOffers",duplicateOffers)
+router.get("/offersUniqueEntries",offersUniqueEntries)
 //============================================================================
 router.post("/general",general)
 router.get("/getGenerals",getGenerals)
