@@ -142,8 +142,8 @@ const duplicateOffers = async (req, res) => {
           $group: {
             _id: {
               date: "$date",
-              mobile: "$Mobile",
-              vehicle: "$LEADCF6",
+              mobile: "$phone",
+
             },
             doc: { $first: "$$ROOT" },
           },

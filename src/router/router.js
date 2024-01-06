@@ -77,7 +77,7 @@ const {
   const {authentication} = require("../middleware/auth")
 
   const {offers, getOffers, offersUniqueEntries, duplicateOffers, offersRange} = require('../controller/offerController')
-  const {general, getGenerals} = require('../controller/generalController')
+  const {general, getGenerals, duplicateGeneral , generalUniqueEntries,generalRange } = require('../controller/generalController')
   let {
     drvingSchool,
     getDrivingSchool,
@@ -151,10 +151,17 @@ router.post('/offers',offers)
 router.get("/getOffers",getOffers)
 router.get("/duplicateOffers",duplicateOffers)
 router.get("/offersUniqueEntries",offersUniqueEntries)
+router.post("/offersRange",offersRange)
 //============================================================================
 router.post("/general",general)
 router.get("/getGenerals",getGenerals)
+router.get("/duplicateGeneral",duplicateGeneral)
+router.get("/generalUniqueEntries",generalUniqueEntries)
+router.post("/generalRange",generalRange )
 //============================================================================
 router.post("/drvingSchool",drvingSchool)
 router.get("/getDrivingSchool",getDrivingSchool)
+router.get("/dupesDrivingSchool",dupesDrivingSchool)
+router.get("/drivingSchoolUniqueEntries",drivingSchoolUniqueEntries)
+router.post("/drivingSchoolRange",drivingSchoolRange)
 module.exports = router;
