@@ -95,73 +95,73 @@ router.post("/login", login);
 
 //=======================================================================
 router.post("/popup", popup);
-router.get("/getPopups", getPopups);
-router.get("/dupilicatepopups", dupilicatepopups);
-router.get("/popupUniqueEntries", popupUniqueEntries);
-router.post("/popupRangeEntries", popupRangeEntries);
+router.get("/getPopups",authentication, getPopups);
+router.get("/dupilicatepopups",authentication, dupilicatepopups);
+router.get("/popupUniqueEntries", authentication,popupUniqueEntries);
+router.post("/popupRangeEntries",authentication, popupRangeEntries);
 //========================================================================
 router.post("/onRoadPrice", onRoadPrice);
-router.get("/getOnRoadPrice", getOnRoadPrice);
-router.get("/duplicateOnRoadPrice", duplicateOnRoadPrice);
-router.get("/onRoadPriceUniqueEntries", onRoadPriceUniqueEntries);
-router.post("/onRoadPriceRange", onRoadPriceRange);
+router.get("/getOnRoadPrice", authentication, getOnRoadPrice);
+router.get("/duplicateOnRoadPrice",authentication, duplicateOnRoadPrice);
+router.get("/onRoadPriceUniqueEntries", authentication,onRoadPriceUniqueEntries);
+router.post("/onRoadPriceRange",authentication, onRoadPriceRange);
 //=======================================================================
 router.post("/service", service);
-router.get("/getService", getService);
-router.get("/dupeService", dupeService);
-router.get("/serviceUniqueEntries", serviceUniqueEntries);
-router.post("/serviceRangeData", serviceRangeData);
+router.get("/getService",authentication, getService);
+router.get("/dupeService", authentication, dupeService);
+router.get("/serviceUniqueEntries",authentication,  serviceUniqueEntries);
+router.post("/serviceRangeData",authentication,  serviceRangeData);
 //======================================================================
 router.post("/accessories", accessories);
-router.get("/getAccessories", getAccessories);
-router.get("/dupeAccessories", dupeAccessories);
-router.get("/accessoriesUniqueEntries", accessoriesUniqueEntries);
-router.post("/accessoriesRangeData", accessoriesRangeData);
+router.get("/getAccessories",authentication,  getAccessories);
+router.get("/dupeAccessories", authentication, dupeAccessories);
+router.get("/accessoriesUniqueEntries",authentication,  accessoriesUniqueEntries);
+router.post("/accessoriesRangeData",authentication,  accessoriesRangeData);
 //======================================================================
 router.post("/isurance", isurance);
-router.get("/getinsurance", getinsurance);
-router.get("/dupeInsurance", dupeInsurance);
-router.get("/insuranceUniqueEntries", insuranceUniqueEntries);
-router.post("/insuranceRangeData", insuranceRangeData);
+router.get("/getinsurance", authentication, getinsurance);
+router.get("/dupeInsurance",authentication,  dupeInsurance);
+router.get("/insuranceUniqueEntries", authentication, insuranceUniqueEntries);
+router.post("/insuranceRangeData",authentication,  insuranceRangeData);
 //=======================================================================
 router.post("/finance", finance);
-router.get("/getFinance", getFinance);
-router.get("/dupeFinance", dupeFinance);
-router.get("/financeUniqueEntries", financeUniqueEntries);
-router.post("/financeRangeData", financeRangeData);
+router.get("/getFinance",authentication,  getFinance);
+router.get("/dupeFinance",authentication,  dupeFinance);
+router.get("/financeUniqueEntries",authentication,  financeUniqueEntries);
+router.post("/financeRangeData",authentication,  financeRangeData);
 //=======================================================================
 router.post("/corporate", corporate);
-router.get("/getCorporate", getCorporate);
-router.get("/dupeCorporate", dupeCorporate);
-router.get("/corporateUniqueEntries", corporateUniqueEntries);
-router.post('/corporateRangeData',corporateRangeData)
+router.get("/getCorporate",authentication,  getCorporate);
+router.get("/dupeCorporate",authentication,  dupeCorporate);
+router.get("/corporateUniqueEntries",authentication,  corporateUniqueEntries);
+router.post('/corporateRangeData',authentication, corporateRangeData)
 //======================================================================
 router.get("/allData", allData);
-router.get("/findDuplicatesInAllCollections", findDuplicatesInAllCollections);
-router.get("/findUniqueEntriesInAllCollections",findUniqueEntriesInAllCollections);
-router.post("/findDataInRangeInAllCollections",findDataInRangeInAllCollections )
+router.get("/findDuplicatesInAllCollections",authentication,  findDuplicatesInAllCollections);
+router.get("/findUniqueEntriesInAllCollections",authentication, findUniqueEntriesInAllCollections);
+router.post("/findDataInRangeInAllCollections",authentication,  findDataInRangeInAllCollections )
 //===========================================================================
 router.post("/contactform",contactform);
-router.get("/getcontactform",getcontactform)
-router.get("/contactUsUniqueEntries",contactUsUniqueEntries)
-router.get("/dupesContactUs",dupesContactUs)
-router.post("/contactUsRange",contactUsRange)
+router.get("/getcontactform",authentication,  getcontactform)
+router.get("/contactUsUniqueEntries",authentication,  contactUsUniqueEntries)
+router.get("/dupesContactUs",authentication, dupesContactUs)
+router.post("/contactUsRange",authentication, contactUsRange)
 //=============================================================================
 router.post('/offers',offers)
-router.get("/getOffers",getOffers)
-router.get("/duplicateOffers",duplicateOffers)
-router.get("/offersUniqueEntries",offersUniqueEntries)
-router.post("/offersRange",offersRange)
+router.get("/getOffers",authentication,getOffers)
+router.get("/duplicateOffers",authentication,duplicateOffers)
+router.get("/offersUniqueEntries",authentication,offersUniqueEntries)
+router.post("/offersRange",authentication,offersRange)
 //============================================================================
 router.post("/general",general)
-router.get("/getGenerals",getGenerals)
-router.get("/duplicateGeneral",duplicateGeneral)
-router.get("/generalUniqueEntries",generalUniqueEntries)
-router.post("/generalRange",generalRange )
+router.get("/getGenerals",authentication,getGenerals)
+router.get("/duplicateGeneral",authentication,duplicateGeneral)
+router.get("/generalUniqueEntries",authentication,generalUniqueEntries)
+router.post("/generalRange",authentication,generalRange )
 //============================================================================
 router.post("/drvingSchool",drvingSchool)
-router.get("/getDrivingSchool",getDrivingSchool)
-router.get("/dupesDrivingSchool",dupesDrivingSchool)
-router.get("/drivingSchoolUniqueEntries",drivingSchoolUniqueEntries)
-router.post("/drivingSchoolRange",drivingSchoolRange)
+router.get("/getDrivingSchool",authentication,getDrivingSchool)
+router.get("/dupesDrivingSchool",authentication,dupesDrivingSchool)
+router.get("/drivingSchoolUniqueEntries",authentication,drivingSchoolUniqueEntries)
+router.post("/drivingSchoolRange",authentication,drivingSchoolRange)
 module.exports = router;
