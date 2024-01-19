@@ -5,7 +5,7 @@ dotenv.config();
 const authentication = async function (req, res, next) {
     try {
         let token = req.headers["authorization"]
-        if (!token) { return res.status(401).send({ msg: "required token " }) }
+        if (!token) { return res.status(401).send({ message: "required token" }) }
         let splittoken = token.split(' ') //converting into array
         // decoding token  
         jwt.verify(splittoken[1], process.env.Secret
