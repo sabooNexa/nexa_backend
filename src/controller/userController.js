@@ -45,7 +45,7 @@ const login = async (req, res) => {
       const token = jwt.sign(
         { userID: isEmailExists._id?.toString() },
         process.env.Secret,
-        { expiresIn: '1m' }
+        { expiresIn: '10m' }
       );
   
       //  Make Respoense
