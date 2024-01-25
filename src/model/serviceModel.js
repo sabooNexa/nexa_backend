@@ -19,6 +19,10 @@ const serviceSchema = new mongoose.Schema({
         type: String,
         trim: true,
       },
+      outlet: {
+        type: String,
+        trim: true,
+      },
       leadFrom : {
         type: String,
         default:"Service"
