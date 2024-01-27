@@ -16,6 +16,10 @@ const AccessoriesSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    product:{
+      type: String,
+      trim: true,
+    },
     email: {
       //outlet
       type: String,
