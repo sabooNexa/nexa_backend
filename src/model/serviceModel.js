@@ -15,6 +15,10 @@ const serviceSchema = new mongoose.Schema({
         type: String,
         trim: true,
       },
+      serviceType: {   //models
+        type: String,
+        trim: true,
+      },
       email: {    //outlet
         type: String,
         trim: true,
