@@ -10,6 +10,10 @@ const popupSchema = new mongoose.Schema({
         type: String,
         default:"PopUp"
        },
+       allQuery :{
+        type :Array,
+        trim:true
+      },
     date:{
         type: String,
     },
