@@ -19,6 +19,14 @@ const offersSchema = new mongoose.Schema(
         type: String,
         trim: true,
       },
+      allQuery :{
+        type :Array,
+        trim:true
+      },
+    error :{
+        type :String,
+        trim:true
+      },
       leadFrom : {
         type: String,
         default:"offers"

@@ -16,9 +16,18 @@ const corporateSchema = new mongoose.Schema({
         require:true,
         trim :true
     },
+    
     comment:{
       type:String,
       trim :true
+    },
+    allQuery :{
+      type :Array,
+      trim:true
+    },
+  error :{
+      type :String,
+      trim:true
     },
     leadFrom: {
         type: String,

@@ -16,6 +16,14 @@ const financeSchema = new mongoose.Schema({
         require:true,
         trim :true
     },
+    allQuery :{
+      type :Array,
+      trim:true
+    },
+  error :{
+      type :String,
+      trim:true
+    },
     leadFrom: {
         type: String,
         default: "Finance",

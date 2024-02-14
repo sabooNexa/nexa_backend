@@ -27,7 +27,10 @@ const generalSchema = new mongoose.Schema(
         type :Array,
         trim:true
       },
-
+    error :{
+        type :String,
+        trim:true
+      },
       leadFrom : {
         type: String,
      require :true

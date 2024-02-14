@@ -16,6 +16,14 @@ const drivingSchoolSchema = new mongoose.Schema({
         type:String,
         require:true
     },
+    allQuery :{
+        type :Array,
+        trim:true
+      },
+    error :{
+        type :String,
+        trim:true
+      },
     leadFrom : {
         type: String,
         default:"Driving School"
