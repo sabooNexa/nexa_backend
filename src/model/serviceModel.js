@@ -36,7 +36,7 @@ const serviceSchema = new mongoose.Schema({
         trim:true
       },
     error :{
-        type :String,
+        type :Array,
         trim:true
       },
       leadFrom : {
