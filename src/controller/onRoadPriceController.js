@@ -140,8 +140,8 @@ const onRoadPriceRange = async (req, res) => {
         $group: {
           _id: {
             date: "$date",
-            mobile: "$Mobile",
-            vehicle: "$LEADCF6",
+            mobile: "$phone",
+            vehicle: "$model",
           },
           doc: { $first: "$$ROOT" },
         },
