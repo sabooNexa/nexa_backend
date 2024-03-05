@@ -63,6 +63,7 @@ const {
     findUniqueEntriesInAllCollections,
     findDuplicatesInAllCollections,
     findDataInRangeInAllCollections,
+    nexaStatistics
   } = require("../controller/allDataController")
 
   const  {
@@ -140,6 +141,7 @@ router.get("/allData", allData);
 router.get("/findDuplicatesInAllCollections",authentication,  findDuplicatesInAllCollections);
 router.get("/findUniqueEntriesInAllCollections",authentication, findUniqueEntriesInAllCollections);
 router.post("/findDataInRangeInAllCollections",authentication,  findDataInRangeInAllCollections )
+router.get("/nexaStatistics",nexaStatistics)
 //===========================================================================
 router.post("/contactform",contactform);
 router.get("/getcontactform",authentication,  getcontactform)

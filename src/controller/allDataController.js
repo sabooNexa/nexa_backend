@@ -9,6 +9,8 @@ const contactusModel =require("../model/contactUsModel")
 const offerModel = require("../model/offerModel")
 const generalModel = require("../model/generalModel")
 const drivingSchoolModel = require("../model/drivingSchoolModel")
+
+
 const allData = async (req, res) => {
   try {
     // Use Promise.all to query data from multiple collections concurrently
@@ -459,9 +461,62 @@ const findDataInRangeInAllCollections = async (req, res) => {
     return res.status(500).send({ status: false, message: error.message });
   }
 };
+
+
+
+const nexaStatistics = async (req, res) => {
+  try {
+    const data = await Promise.all([
+      corporateModel.find().sort({ createdAt: -1 }).exec(),
+      accessoriesModel.find().sort({ createdAt: -1 }).exec(),
+      financeModel.find().sort({ createdAt: -1 }).exec(),
+      insuranceModel.find().sort({ createdAt: -1 }).exec(),
+      onRoadPriceModel.find().sort({ createdAt: -1 }).exec(),
+      popupModel.find().sort({ createdAt: -1 }).exec(),
+      serviceModel.find().sort({ createdAt: -1 }).exec(),
+      contactusModel.find().sort({ createdAt: -1 }).exec(),
+      offerModel.find().sort({ createdAt: -1 }).exec(),
+      generalModel.find().sort({ createdAt: -1 }).exec(),
+      drivingSchoolModel.find().sort({ createdAt: -1 }).exec()
+    ]);
+
+ // Combine the results into a single array
+ const combinedData = data.reduce((acc, curr) => acc.concat(curr), []);
+
+ // Extract leadFrom values from the combined data
+ const leadFromValues = combinedData.map(item => item.leadFrom);
+console.log(leadFromValues.length)
+ let hm = new Map()
+ for(let i=0;i<leadFromValues.length;i++){
+  if(hm.has(leadFromValues[i])){
+    let val = hm.get(leadFromValues[i])
+    hm.set(leadFromValues[i], val+1)
+    // hm.set("allData", val+1)
+  }else{
+    hm.set(leadFromValues[i],1)
+  }
+ }
+ hm.set("AllData", leadFromValues.length)
+//  console.log(hm)
+ const formData = {};
+ hm.forEach((value, key) => {
+  formData[key] = value;
+ });
+
+ // Return the leadFrom values in the response
+ return res.status(200).send({ formData });
+  } catch (error) {
+    return res.status(500).send({ status: false, message: error.message });
+  }
+}
+
+
+
+
 module.exports = {
   allData,
   findUniqueEntriesInAllCollections,
   findDuplicatesInAllCollections,
   findDataInRangeInAllCollections,
+  nexaStatistics
 };
