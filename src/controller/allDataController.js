@@ -528,6 +528,14 @@ console.log(leadFromValues.length)
 
   // Convert the Map to an object for easier handling
   const monthYearCountsArray = Array.from(monthYearCounts, ([x, y]) => ({ x, y }));
+
+      // Sort the array by month and year in ascending order
+      monthYearCountsArray.sort((a, b) => {
+        const dateA = new Date(`${a.x.slice(3)}-${a.x.slice(0, 3)}-01`);
+        const dateB = new Date(`${b.x.slice(3)}-${b.x.slice(0, 3)}-01`);
+        return dateA - dateB;
+      });
+  
  // Return the leadFrom values in the response
  return res.status(200).send({ formData , monthYearCounts: monthYearCountsArray, });
   } catch (error) {
