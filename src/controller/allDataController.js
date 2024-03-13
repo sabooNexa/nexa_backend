@@ -503,8 +503,33 @@ console.log(leadFromValues.length)
   formData[key] = value;
  });
 
+   // Helper function to convert month number to name
+   const monthNumberToName = (monthNumber) => {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return monthNames[monthNumber - 1];
+  };
+
+  // Initialize a Map to store the counts of each month and year
+  let monthYearCounts = new Map();
+
+  // Iterate over combinedData to extract month and year and count occurrences
+  combinedData.forEach(item => {
+    const date = new Date(item.createdAt);
+    const monthName = monthNumberToName(date.getMonth() + 1); // Convert month number to name
+    const year = date.getFullYear();
+    const monthYear = `${monthName}${year}`; // Format as MMMYYYY
+
+    if (monthYearCounts.has(monthYear)) {
+      monthYearCounts.set(monthYear, monthYearCounts.get(monthYear) + 1);
+    } else {
+      monthYearCounts.set(monthYear, 1);
+    }
+  });
+
+  // Convert the Map to an object for easier handling
+  const monthYearCountsArray = Array.from(monthYearCounts, ([x, y]) => ({ x, y }));
  // Return the leadFrom values in the response
- return res.status(200).send({ formData });
+ return res.status(200).send({ formData , monthYearCounts: monthYearCountsArray, });
   } catch (error) {
     return res.status(500).send({ status: false, message: error.message });
   }
