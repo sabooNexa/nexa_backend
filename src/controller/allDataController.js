@@ -575,20 +575,21 @@ const nexaStatistics = async (req, res) => {
       const assignColor = (leadFrom) => {
         // Example fixed color assignment
         const colors = {
-          "Driving School": "hsl(129, 70%, 50%)",
-          Corporate: "hsl(296, 70%, 50%)",
-          Accessories: "hsl(97, 70%, 50%)",
-          Finance: "hsl(340, 70%, 50%)",
-          Insurance: "hsl(320, 70%, 50%)",
-          "On Road Price": "hsl(140, 40%, 50%)",
-          PopUp: "hsl(210, 70%, 50%)",
-          Service: "hsl(270, 10%, 50%)",
-          "24/7 Service": "hsl(48, 70%, 50%)",
-          "Contact Us": "hsl(180, 70%, 50%)",
-          offers: "hsl(240, 70%, 50%)",
-          Showroom: "hsl(60, 70%, 50%)",
-          "Test Drive": "hsl(320, 40%, 50%)",
-      };
+          "Driving School": "hsl(0, 100%, 50%)", // Red
+          Corporate: "hsl(240, 100%, 50%)", // Blue
+          Accessories: "hsl(120, 100%, 50%)", // Green
+          Finance: "hsl(300, 100%, 50%)", // Purple
+          Insurance: "hsl(30, 100%, 50%)", // Orange
+          "On Road Price": "hsl(60, 100%, 50%)", // Yellow
+          PopUp: "hsl(330, 100%, 50%)", // Pink
+          Service: "hsl(45, 100%, 50%)", // Brown
+          "24/7 Service": "hsl(0, 0%, 50%)", // Black
+          "Contact Us": "hsl(0, 0%, 100%)", // White
+          offers: "hsl(180, 100%, 50%)", // Cyan
+          Showroom: "hsl(300, 100%, 50%)", // Magenta
+          "Test Drive": "hsl(120, 100%, 50%)", // Lime
+         };
+         
       
         return colors[leadFrom] || "hsl(0, 0%, 0%)"; // Default color if not found
       };
