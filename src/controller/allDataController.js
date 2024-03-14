@@ -485,7 +485,7 @@ const nexaStatistics = async (req, res) => {
 
  // Extract leadFrom values from the combined data
  const leadFromValues = combinedData.map(item => item.leadFrom);
-console.log(leadFromValues.length)
+// console.log(leadFromValues.length)
  let hm = new Map()
  for(let i=0;i<leadFromValues.length;i++){
   if(hm.has(leadFromValues[i])){
@@ -536,8 +536,74 @@ console.log(leadFromValues.length)
         return dateA - dateB;
       });
   
- // Return the leadFrom values in the response
- return res.status(200).send({ formData , monthYearCounts: monthYearCountsArray, });
+      let leadFromMonthYearCounts = new Map();
+
+    // Iterate over combinedData to extract month and year and count occurrences for each leadFrom
+    combinedData.forEach(item => {
+      const date = new Date(item.createdAt);
+      const monthName = monthNumberToName(date.getMonth() + 1); // Convert month number to name
+      const year = date.getFullYear();
+      const monthYear = `${monthName}${year}`; // Format as MMMYYYY
+      const leadFrom = item.leadFrom;
+
+      // Create a unique key for each leadFrom and monthYear combination
+      const key = `${leadFrom}-${monthYear}`;
+
+      if (leadFromMonthYearCounts.has(key)) {
+        leadFromMonthYearCounts.set(key, leadFromMonthYearCounts.get(key) + 1);
+      } else {
+        leadFromMonthYearCounts.set(key, 1);
+      }
+    });
+
+    // Convert the Map to an array of objects for easier handling
+    const leadFromMonthYearCountsArray = Array.from(leadFromMonthYearCounts, ([key, count]) => {
+      const [leadFrom, monthYear] = key.split('-');
+      return { leadFrom, monthYear, count };
+    });
+
+    // Group the counts by month
+    const groupedByMonth = leadFromMonthYearCountsArray.reduce((acc, { leadFrom, monthYear, count }) => {
+      if (!acc[monthYear]) {
+        acc[monthYear] = { Month: monthYear };
+      }
+      acc[monthYear][leadFrom] = count;
+      return acc;
+    }, {});
+
+      // Assign a fixed color to each leadFrom value
+      const assignColor = (leadFrom) => {
+        // Example fixed color assignment
+        const colors = {
+          "Driving School": "hsl(129, 70%, 50%)",
+          Corporate: "hsl(296, 70%, 50%)",
+          Accessories: "hsl(97, 70%, 50%)",
+          Finance: "hsl(340, 70%, 50%)",
+          Insurance: "hsl(320, 70%, 50%)",
+          "On Road Price": "hsl(140, 40%, 50%)",
+          PopUp: "hsl(210, 70%, 50%)",
+          Service: "hsl(270, 10%, 50%)",
+          "24/7 Service": "hsl(48, 70%, 50%)",
+          "Contact Us": "hsl(180, 70%, 50%)",
+          offers: "hsl(240, 70%, 50%)",
+          Showroom: "hsl(60, 70%, 50%)",
+          "Test Drive": "hsl(320, 40%, 50%)",
+      };
+      
+        return colors[leadFrom] || "hsl(0, 0%, 0%)"; // Default color if not found
+      };
+  
+      for (const month in groupedByMonth) {
+        for (const leadFrom in groupedByMonth[month]) {
+          if (leadFrom !== "Month") {
+            groupedByMonth[month][`${leadFrom}Color`] = assignColor(leadFrom);
+          }
+        }
+      }
+      let barchart = Object.values(groupedByMonth)
+//  Return the leadFrom values in the response
+ return res.status(200).send({ formData , monthYearCounts: monthYearCountsArray, barchart});
+// return res.status(200).send(Object.values(groupedByMonth));
   } catch (error) {
     return res.status(500).send({ status: false, message: error.message });
   }
