@@ -467,12 +467,12 @@ const findDataInRangeInAllCollections = async (req, res) => {
 const nexaStatistics = async (req, res) => {
   try {
     const data = await Promise.all([
+      popupModel.find().sort({ createdAt: -1 }).exec(),
+      onRoadPriceModel.find().sort({ createdAt: -1 }).exec(),
       corporateModel.find().sort({ createdAt: -1 }).exec(),
       accessoriesModel.find().sort({ createdAt: -1 }).exec(),
       financeModel.find().sort({ createdAt: -1 }).exec(),
       insuranceModel.find().sort({ createdAt: -1 }).exec(),
-      onRoadPriceModel.find().sort({ createdAt: -1 }).exec(),
-      popupModel.find().sort({ createdAt: -1 }).exec(),
       serviceModel.find().sort({ createdAt: -1 }).exec(),
       contactusModel.find().sort({ createdAt: -1 }).exec(),
       offerModel.find().sort({ createdAt: -1 }).exec(),
@@ -483,6 +483,7 @@ const nexaStatistics = async (req, res) => {
  // Combine the results into a single array
  const combinedData = data.reduce((acc, curr) => acc.concat(curr), []);
 
+ const recentData = combinedData.slice(-50);
  // Extract leadFrom values from the combined data
  const leadFromValues = combinedData.map(item => item.leadFrom);
 // console.log(leadFromValues.length)
@@ -603,8 +604,8 @@ const nexaStatistics = async (req, res) => {
       }
       let barchart = Object.values(groupedByMonth)
 //  Return the leadFrom values in the response
- return res.status(200).send({ formData , monthYearCounts: monthYearCountsArray, barchart});
-// return res.status(200).send(Object.values(groupedByMonth));
+ return res.status(200).send({ formData , monthYearCounts: monthYearCountsArray, barchart, recentData});
+// return res.status(200).send(recentData);
   } catch (error) {
     return res.status(500).send({ status: false, message: error.message });
   }
