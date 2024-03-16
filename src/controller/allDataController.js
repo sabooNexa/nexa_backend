@@ -483,7 +483,11 @@ const nexaStatistics = async (req, res) => {
  // Combine the results into a single array
  const combinedData = data.reduce((acc, curr) => acc.concat(curr), []);
 
- const recentData = combinedData.slice(-50);
+  // Sort combinedData by createdAt in descending order
+  combinedData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  // Extract only the most recent 50 JSON objects
+  const recentData = combinedData.slice(0, 50);
  // Extract leadFrom values from the combined data
  const leadFromValues = combinedData.map(item => item.leadFrom);
 // console.log(leadFromValues.length)
