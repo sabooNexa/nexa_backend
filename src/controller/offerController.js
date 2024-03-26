@@ -13,9 +13,9 @@ const offers = async (req, res) => {
     data.date = dates;
     data.time = times;
     let savedata = await offerModel.create(data);
-    res.status(201).send({ status: true, data: savedata });
+   return res.status(201).send({ status: true, data: savedata });
   } catch (error) {
-    res.status(500).send({ status: false, message: error.message });
+     return res.status(500).send({ status: false, message: error.message });
   }
 };
 //==========================================================================
